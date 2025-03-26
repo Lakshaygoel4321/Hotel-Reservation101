@@ -11,6 +11,8 @@ from src.entity.artifact_entity import DataTransformationArtifact, DataIngestion
 from src.exception import USvisaException
 from src.logger import logging
 from src.utils.main_utils import save_object, save_numpy_array_data, read_yaml_file, drop_columns
+from src.entity.estimator import TargetValueMapping
+
 
 
 class DataTransformation:
@@ -77,7 +79,15 @@ class DataTransformation:
 
             drop_cols = self._schema_config['drop_columns']
             input_train = drop_columns(input_train, drop_cols)
+            input_train = input_train.replace(
+                    TargetValueMapping()._asdict()
+                )
+            
             input_test = drop_columns(input_test, drop_cols)
+
+            input_test = input_test.replace(
+                    TargetValueMapping()._asdict()
+                )
 
             logging.info("Applying preprocessing to train and test sets")
             input_train_arr = preprocessor.fit_transform(input_train)
