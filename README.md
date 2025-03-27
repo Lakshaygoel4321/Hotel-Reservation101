@@ -63,7 +63,7 @@ export MONGODB_URL="mongodb+srv://<username>:<password>@cluster.mongodb.net/"
 ```bash
 python app.py
 ```
-Access the app at: **http://127.0.0.1:5000/**  
+Access the app at: **http://127.0.0.0:8080/**  
 
 ---
 
